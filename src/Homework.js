@@ -13,14 +13,15 @@ function Part(props) {
 }
 
 function Content(props) {
-  let child = [];
-  for (let i = 0; i < props.section.length; i++) {
-    child.push(
-      <Part test={props.section[i]}></Part>
-    )
-  }
-  return child;
+  return (
+      <>
+        <Part test={props.section[0]}></Part>
+        <Part test={props.section[1]}></Part>
+        <Part test={props.section[2]}></Part>
+      </>
+  );
 }
+
 
 function Total(props) {
   let sum = 0;
@@ -48,7 +49,7 @@ function Cource() {
       }
     ]
   };
-
+  
   return (
     <>
       <Header title={course.name}></Header>
