@@ -13,13 +13,14 @@ function Part(props) {
 }
 
 function Content(props) {
-  return (
-      <>
-        <Part test={props.section[0]}></Part>
-        <Part test={props.section[1]}></Part>
-        <Part test={props.section[2]}></Part>
-      </>
-  );
+  let child = [];
+
+  for (let i = 0; i< props.section.length; i++) {
+    child.push(
+      <Part test={props.section[i]} key={i}></Part>
+    )
+  }
+  return child;
 }
 
 
