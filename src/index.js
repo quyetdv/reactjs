@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import App from "./App";
-import App from "./Homework02";
+// import App from "./Homework02";
+import App from "./Homework03";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// ReactDOM.render(<App />, document.getElementById("root"));
 // ReactDOM.render(<Cource />, document.getElementById("root"));
 
 // Element chỉ có duy nhất 1 thẻ
@@ -107,7 +108,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 //       {/* Bản chất là render ra 1 array như sau */}
 //       {/*
 //         {[
-//           <Course key="1" course={courses[0]}/>, 
+//           <Course key="1" course={courses[0]}/>,
 //           <Course key="2" course={courses[1]}/>
 //         ]}
 //         */}
@@ -120,4 +121,47 @@ ReactDOM.render(<App />, document.getElementById("root"));
 //   return <h1>{props.course.name}</h1>;
 // };
 
-// ReactDOM.render(<App />, document.getElementById("root"));
+// Có định nghĩa function
+// function App() {
+//     function handleClick() {
+//       console.log('clicked')
+//     }
+//     return <h1 onClick={handleClick}>Hello World</h1>
+//    }
+
+// Không định nghĩa function
+
+// function App() {
+//     return <h1 onClick={() => console.log('clicked')}>Hello World</h1>
+//    }
+
+// Có tham số
+// function App() {
+//     function handleClick(message) {
+//       console.log('You ' + message)
+//     }
+//     return <h1 onClick={() => handleClick('get it')}>Hello World</h1>
+//    }
+
+// function App() {
+//   function handleClick(e) {
+//     console.log("this", this); //undefined
+//     console.log("this", e.target); //this <h1>
+//   }
+//   return <h1 onClick={handleClick}>Hello World</h1>;
+// }
+
+// function App() {
+//   return <h1 onClick={e => console.log("this", e.target)}>Hello World</h1>;
+// }
+
+// function App() {
+//     function handleClick(e, message) {
+//       console.log('You ' + message)
+//       console.log('this', this) //undefined
+//       console.log('this', e.target) //this <h1>
+//     }
+//     return <h1 onClick={e => handleClick(e, 'clicked')}>Hello World</h1>
+//    }
+   
+ReactDOM.render(<App />, document.getElementById("root"));
