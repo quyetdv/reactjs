@@ -2,21 +2,34 @@ import React from "react";
 
 const Course = props => (
   <>
-    <Header header={props.courses}></Header>
-    <Content content={props.courses.parts}></Content>
+    <Header header={props.course}></Header>
+    <Content parts={props.course.parts}></Content>
   </>
-)
-const Header = props => <h1>{props.header.name}</h1>
-const Content = props => (
-  <>
-    {props.content.map(content => 
-      <Part key={content.id} part={content}></Part>
-      
-    )}
-    <b>total of {props.content.reduce((total, num) => total + num.exercises,0)} exercises</b>
-  </>
-)
-const Part = props => <p>{props.part.name} {props.part.exercises}</p>
+);
+const Header = props => <h1>{props.header.name}</h1>;
+const Content = props => {
+  const parts = props.parts;
+  return (
+    <>
+      {parts.map(element => (
+        <Part
+          key={element.id}
+          name={element.name}
+          exercises={element.exercises}
+        ></Part>
+      ))}
+      <b>
+        total of {parts.reduce((total, part) => total + part.exercises, 0)}{" "}
+        exercises
+      </b>
+    </>
+  );
+};
+const Part = props => (
+  <p>
+    {props.name} {props.exercise}
+  </p>
+);
 const App = () => {
   const courses = [
     {
@@ -64,17 +77,12 @@ const App = () => {
   ];
 
   return (
-      <div>
-          {
-            courses.map(courses => 
-                <Course key={courses.id} courses={courses}></Course>
-            )
-          }
-          
-      </div>
-    
-  )
-
-}
+    <div>
+      {courses.map(element => (
+        <Course key={element.id} course={element}></Course>
+      ))}
+    </div>
+  );
+};
 
 export default App;

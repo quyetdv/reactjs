@@ -1,13 +1,12 @@
 import React from "react";
 
-const Row = props => {
-  const remove = e => {
-    e.target.parentNode.innerHTML = "";
-  };
+const Row = ({ index, student, deleteRow }) => {
+  const { name } = student;
   return (
-    <tr>
+    <tr data-index={index}>
+      <td>{name}</td>
       <td>
-        {props.std.name} <button onClick={remove}>Delete</button>
+        <button onClick={ e => deleteRow(e, index) }>Delete</button>
       </td>
     </tr>
   );
@@ -15,9 +14,17 @@ const Row = props => {
 
 const App = () => {
   const handleClick = e => {
-    e.target.innerHTML === "ON"
-      ? (e.target.innerHTML = "OFF")
-      : (e.target.innerHTML = "ON");
+    let status = e.target.textContent;
+    switch (status) {
+      case "ON":
+        e.target.textContent = "OFF";
+        break;
+      case "OFF":
+        e.target.textContent = "ON";
+        break;
+      default:
+        return;
+    }
   };
 
   const students = [
@@ -25,19 +32,26 @@ const App = () => {
     { name: "Student2" },
     { name: "Student3" }
   ];
+
+  const deleteRow = (e,index) => {
+    console.log(index)
+    console.log(e.target.closest(`[data-index="${index}"]`))
+    e.target.closest(`[data-index="${index}"]`).remove()
+  }
+
+  const rows = students.map((student, index) => {
+    return (
+      <Row key={index} index={index} student={student} deleteRow={deleteRow}></Row>
+    );
+  });
+
   return (
     <>
       <h1>Home Work 03</h1>
       <button onClick={handleClick}>ON</button>
-      <div>
-        <table>
-          <tbody>
-            {students.map((students, index) => (
-              <Row key={index} std={students} id={index}></Row>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <tbody>{rows}</tbody>
+      </table>
     </>
   );
 };
